@@ -95,14 +95,20 @@ function draw() {
     }
     //here is the second frame timer<3
     if (frameTimer2 >= 1) {
-        frameTimer2 -= 1
-    }
+        frameTimer2 -= 1;
+    };
     if (frameTimer2 === 0) {
-        voice.speak('seconds to live. would you like me to perform a ship scan?')
-        frameTimer2 -= 1
-        frameTimer3 = 500
-        displayText = ''
-    }
+        voice.speak('seconds to live. would you like me to perform a ship scan?');
+        frameTimer2 -= 1;
+        displayText = '';
+    };
+    if (frameTimer3 >= 1) {
+        frameTimer3 -= 1;
+    };
+    if (frameTimer3 === 0) {
+        voice.speak('fortunately it seems that most of the ships functions are intact');
+        frameTimer3 -= 1;
+    };
 
 }
 
@@ -147,7 +153,7 @@ function received(data) {
 function shipScan(data) {
     if (data[1] === 'scan') {
         voice.speak('performing scan');
-        frameTimer4 = 200
+        frameTimer3 = 200
     }
 }
 
