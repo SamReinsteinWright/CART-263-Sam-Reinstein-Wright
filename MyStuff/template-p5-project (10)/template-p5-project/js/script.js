@@ -106,7 +106,7 @@ function draw() {
         frameTimer3 -= 1;
     };
     if (frameTimer3 === 0) {
-        voice.speak('fortunately it seems that most of the ships functions are intact');
+        voice.speak('fortunately it seems that most of the ships functions are intact. unfortunately the power reserves have been damaged. we may only perform one ships function at a time. may i recommend setting rear thrusters to 75% or above.');
         frameTimer3 -= 1;
     };
 
@@ -155,6 +155,9 @@ function shipScan(data) {
         voice.speak('performing scan');
         frameTimer3 = 200
     }
+}
+function mousePressed() {
+    voiceRecognizer.start();
 }
 
 /*function setBackground(data) {
