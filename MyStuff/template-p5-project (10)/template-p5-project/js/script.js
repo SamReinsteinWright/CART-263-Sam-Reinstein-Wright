@@ -16,7 +16,7 @@ let frameTimer4 = -1
 //here is pippins code (soon to be modified)
 const commands = [
     {
-        "command": /perform (.*)/,
+        "command": /perform(.*)scan/,
         "callback": shipScan
     },
     /*{
@@ -27,11 +27,11 @@ const commands = [
         "command": /i am (.*) you/,
         "callback": received
     },
-    /*{
-        "command": /set the red value to (.*)/,
-        "callback": setRed
-    },
     {
+        "command": /rear(.*)thrusters(.*)to(.*)/,
+        "callback": setThrusters
+    },
+    /*{
         "command": /set the text color to (.*) gray/,
         "callback": setTextColor
     },
@@ -60,8 +60,9 @@ let textColor = 255;
 function setup() {
     createCanvas(400, 400);
     //here is the initial story beat. i want this to be a weird space adventure
-    voice.speak(`you must wake up, \n 
-    wake up! Your sensory functions have been severely damaged.
+    voice.setPitch(0.1)
+    voice.speak(`you muh uh uh uh must wake up, \n 
+    wake up! Your sensory fun un un un unctions have been sev everely damaged.
     I've managed to connect to your insular cortex to transmit brainwaves.
     repeat "I am receiving you" to demonstrate your understanding.`);
 
@@ -88,6 +89,7 @@ function draw() {
     }
     //im also using them to display timer bars on screen
     if (frameTimer1 === 0) {
+        voice.setPitch(0.01)
         voice.speak(random(100, 500))
         frameTimer1 -= 1
         frameTimer2 = 500
@@ -98,6 +100,7 @@ function draw() {
         frameTimer2 -= 1;
     };
     if (frameTimer2 === 0) {
+        voice.setPitch(0.1)
         voice.speak('seconds to live. would you like me to perform a ship scan?');
         frameTimer2 -= 1;
         displayText = '';
@@ -120,7 +123,7 @@ function handleCommand() {
     for (let command of commands) {
         let lowercase = voiceRecognizer.resultString.toLowerCase();
         let match = lowercase.match(command.command);
-        console.log(match);
+        console.log(lowercase);
         if (match && match.length > 1) {
             command.callback(match);
         }
@@ -151,10 +154,14 @@ function received(data) {
     }
 }
 function shipScan(data) {
-    if (data[1] === 'scan') {
-        voice.speak('performing scan');
-        frameTimer3 = 200
-    }
+    voice.speak('performing scan');
+    frameTimer3 = 200
+}
+function setThrusters(data) {
+    voice.speak('setting rear thrusters to')
+    voice.speak(data[3])
+        (data[3])
+
 }
 function mousePressed() {
     voiceRecognizer.start();
