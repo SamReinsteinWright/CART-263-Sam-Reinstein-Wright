@@ -83,16 +83,16 @@ class Play extends Phaser.Scene {
             }
 
             if (sheepDistance < 200 && sheepDistance > 100) {
-                this.physics.moveToObject(sheep, closestSheep, 50)
+                this.physics.moveToObject(sheep, closestSheep, 30)
             }
             else if (sheepDistance < 100 && sheepDistance > 50) {
-                this.physics.moveToObject(sheep, closestSheep, 50)
+                this.physics.moveToObject(sheep, closestSheep, 20)
             }
             else if (sheepDistance < 10 && sheepDistance > 0) {
-                this.physics.moveToObject(sheep, closestSheep, -50)
+                this.physics.moveToObject(sheep, closestSheep, -10)
             }
             else if (sheepDistance > 200) {
-                this.physics.moveToObject(sheep, farthestSheep, 50)
+                this.physics.moveToObject(sheep, farthestSheep, 40)
             }
             if (avatarSheep < 100) {
                 this.physics.moveToObject(sheep, this.avatar, -65);
